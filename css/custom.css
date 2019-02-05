@@ -77,8 +77,8 @@ body.nav-sm .profile {
 
 /* css for cmr-map */
 .cmr-map {
-  width: inherit;
-  height: inherit;
+    width: 96%;
+    height: 95%;
 }
 
 
