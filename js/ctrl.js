@@ -5,7 +5,7 @@ AmCharts.makeChart( "mapdiv", {
     "dataProvider": {
         "map": "cameroonLow",
         "areas": [
-            { "id":"CM-AD", "color": "#3150cc", "title" : "hello world"},
+            { "id":"CM-AD", "color": "#d7d7eb"},
             { "id":"CM-CE", "color": "#d7d7eb"},
             { "id":"CM-EN", "color": "#d7d7eb"},
             { "id":"CM-SW", "color": "#d7d7eb"},
@@ -21,7 +21,7 @@ AmCharts.makeChart( "mapdiv", {
             "latitude":  4.4666700,
             "longitude": 11.3166700,
             "scale": 1,
-            "label": "Center",
+            "label": "Centre",
             "labelShiftY": 2,
             "zoomLevel": 5,
             "title": "Center",

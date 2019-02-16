@@ -2,7 +2,7 @@
 // connection to db settings
 require('config.php');
 
-$sql = "SELECT * FROM students";
+$sql = "SELECT * FROM communes";
 $result = mysqli_query($connect, $sql);
 
 
