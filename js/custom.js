@@ -1,3 +1,5 @@
+old_element = 'CM-AD';
+
 $('.land').click(function(){
     // this is to reload the departments in a region
     region_id = $(this).attr('title').toUpperCase();
@@ -16,6 +18,14 @@ $('.land').click(function(){
 	    	}
 	    }
      });
+
+    // toggle class active 
+    if (old_element != $(this).attr('id')){
+
+    	document.getElementById(old_element).classList.remove("active_region");
+    	document.getElementById($(this).attr('id')).classList.add("active_region");
+    	old_element = $(this).attr('id');
+    }
 })
 
 // filter by criterias

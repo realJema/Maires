@@ -51,10 +51,14 @@
   }
 
   .svg-item path:hover {
-    fill: #3538d2;
+    fill: #337ab7;
     stroke: #FFF;
     stroke-width: 1px;
     transition: fill 0.3s;
+  }
+
+  .active_region {
+    fill: #337ab7 !important;
   }
   </style>
 
@@ -120,12 +124,22 @@
                                       <label for="exampleSelect1">Parti Politique</label>
                                       <select class="form-control" id="parti" onchange="filter()" name="level">
                                         <option value="All" selected>Tous</option>
-                                        <option>RDPC</option>
-                                        <option>UNDP</option>
-                                        <option>UPC</option>
-                                        <option>SDF</option>
-                                        <option>MDR</option>
-                                        <option>UFP</option>
+                                        <?php
+                                            // script to generate distinct list of Parti_politique_majoritaire
+                                            require('scripts/config.php');
+
+                                            mysqli_query($connect,"SET CHARACTER SET 'utf8'");
+                                            //SQL data query to retrieve data
+                                            $sql = "SELECT DISTINCT Parti_politique_majoritaire FROM maires";
+
+                                            //Assign results to variable        
+                                            $query = mysqli_query($connect, $sql);
+
+                                            while ($result = mysqli_fetch_array($query)) {
+
+                                            echo "<option>". $result['Parti_politique_majoritaire'] ."</option>";
+                                                }
+                                        ?>
                                       </select>
                                     </div>
                                     <!-- course -->
@@ -159,7 +173,7 @@
                                   <th>Parti politique majoritaire</th>
                                   <th>Téléphone de la Mairie</th>
                                   <th>Téléphone</th>
-                                  <th>Sexe du Maire</th>
+                                  <th>Sexe</th>
                                   <th>Adresse courriel</th>
                                   <th>Site Web de la Mairie</th>
                                   <th>Boîte Postale</th>
@@ -190,11 +204,11 @@
 
                                   echo "
                                           <tr>
-                                              <td>".$result['Region']."</td>
+                                              <td class=word_nowrap>".$result['Region']."</td>
                                               <td>".$result['D_partements']."</td>
                                               <td>".$result['Communes']."</td>
                                               <td>".$result['Population_en_2005']."</td>
-                                              <td>".$result['Nom']."</td>
+                                              <td class=word_nowrap>".$result['Nom']."</td>
                                               <td>".$result['Superficie_en_Km2']."</td>
                                               <td>".$result['Nombre_de_conseillers_muncipaux']."</td>
                                               <td>".$result['Parti_politique_majoritaire']."</td>
@@ -252,9 +266,6 @@
           var table = $("#datatable-responsive").DataTable({
                 dom: "Bfrtip",
                 buttons: [{
-                  extend: "copy",
-                  className: "btn-sm"
-                }, {
                   extend: "csv",
                   className: "btn-sm"
                 }, {

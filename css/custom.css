@@ -5407,3 +5407,9 @@ ul.notifications {
 .copyright-info {
   padding: 8px 0;
 }
+
+
+/*css for nowrap on column*/
+.word_nowrap {
+  white-space: nowrap;
+}
