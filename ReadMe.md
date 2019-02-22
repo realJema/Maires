@@ -5,10 +5,7 @@ Ce projet consiste d'une `carte interactive` et d'un `tableau` contenant des inf
 
 #### Database
 nom db: feicom
-nom table: maires
-la base de donnees est un fichier excel converti en fichier csv et importer dans une basees de donnees MySql
-
-creer la base de donnees avec le fichier `mairesdb.sql`
+importer le fichier *feicom.sql* dans la base de donnees
 
 #### A-Faire
 - Ajouter popup pour chaque regions avec des informations
