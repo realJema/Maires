@@ -1,8 +1,10 @@
 old_element = 'CM-AD';
+region = "All";
 
 $('.land').click(function(){
     // this is to reload the departments in a region
     region_id = $(this).attr('title').toUpperCase();
+    region = region_id;
     $.ajax({
         type: "POST",
         url: "scripts/dropdown.php",
@@ -26,12 +28,16 @@ $('.land').click(function(){
     	document.getElementById($(this).attr('id')).classList.add("active_region");
     	old_element = $(this).attr('id');
     }
+    // filter table when map is clicked on
+    filter();
+
 })
 
 // filter by criterias
 function filter() {
 	// filters through the criterias which arent selected as all
 	var searchTerms = [];
+	var reg = region;
 	var dept = $('#dept').val();
 	var parti = $('#parti').val();
 	var sex = $('#sex').val();
@@ -39,21 +45,16 @@ function filter() {
 	$('#filter_table select').filter(
 	  function(){
 	    if($(this).val()!="All"){
-	      searchTerms.push($(this).attr('id'));
+	      searchTerms.push($(this).val());
 	    }
 	  });
-	if(typeof eval(searchTerms[2]) != 'undefined'){
-	  table.search(eval(searchTerms[0]) + ' ' + eval(searchTerms[1]) + ' ' + eval(searchTerms[2])).draw();
+
+	if(region !="All"){
+		searchTerms.push(region);
 	}
-	else if(typeof eval(searchTerms[1]) != 'undefined'){
-	  table.search(eval(searchTerms[0]) + ' ' + eval(searchTerms[1])).draw();
-	}
-	else if(typeof eval(searchTerms[0]) != 'undefined'){
-	  table.search(eval(searchTerms[0])).draw();
-	}
-	else{
-	  table.search('').draw();
-	}
+	console.log('this is the search terms', searchTerms)
+
+  	table.search(searchTerms.join(' ')).draw();
 	// query = searchTerms.join(' ');
 	// console.log(query);
 	// console.log(eval(query));

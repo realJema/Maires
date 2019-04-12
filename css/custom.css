@@ -1,3 +1,15 @@
+html {
+  height: fit-content !important;
+}
+
+/*prevents line breaks*/
+table.table-bordered tbody th, table.table-bordered tbody td {
+    border-left-width: 0;
+    border-bottom-width: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 body.nav-sm .container.body .left_col {
   width: 70px;
   padding: 0;
@@ -5412,4 +5424,5 @@ ul.notifications {
 /*css for nowrap on column*/
 .word_nowrap {
   white-space: nowrap;
+  font-weight: bold;
 }

@@ -130,7 +130,7 @@
 
                                             mysqli_query($connect,"SET CHARACTER SET 'utf8'");
                                             //SQL data query to retrieve data
-                                            $sql = "SELECT DISTINCT Parti_politique_majoritaire FROM maires";
+                                            $sql = "SELECT DISTINCT Parti_politique_majoritaire FROM maires WHERE Parti_politique_majoritaire IS NOT NULL";
 
                                             //Assign results to variable        
                                             $query = mysqli_query($connect, $sql);
@@ -204,11 +204,11 @@
 
                                   echo "
                                           <tr>
-                                              <td class=word_nowrap>".$result['Region']."</td>
+                                              <td>".$result['Region']."</td>
                                               <td>".$result['D_partements']."</td>
                                               <td>".$result['Communes']."</td>
-                                              <td>".$result['Population_en_2005']."</td>
                                               <td class=word_nowrap>".$result['Nom']."</td>
+                                              <td>".$result['Population_en_2005']."</td>
                                               <td>".$result['Superficie_en_Km2']."</td>
                                               <td>".$result['Nombre_de_conseillers_muncipaux']."</td>
                                               <td>".$result['Parti_politique_majoritaire']."</td>
@@ -265,6 +265,9 @@
         <script>
           var table = $("#datatable-responsive").DataTable({
                 dom: "Bfrtip",
+                "language": {
+                  "thousands": "'"
+                },
                 buttons: [{
                   extend: "csv",
                   className: "btn-sm"
@@ -273,7 +276,9 @@
                   className: "btn-sm"
                 }, {
                   extend: "pdf",
-                  className: "btn-sm"
+                  className: "btn-sm",
+                  orientation: 'landscape',
+                  pageSize: 'LEGAL'
                 }, {
                   extend: "print",
                   className: "btn-sm"
